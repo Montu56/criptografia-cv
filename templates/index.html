@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Sergio Montufar</title>
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    
+</head>
+<body>
+    <div class="page">
+
+        <!-- LADO IZQUIERDO: FOTO + CONTACTO -->
+        <aside class="sidebar">
+            <div class="photo-wrapper">
+                <img src="{{ url_for('static', filename='spyra.jpg') }}" alt="Foto de Ruben Montufar Ramirez" class="photo">
+                <!-- Sin Flask: <img src="../static/spyra.jpg" ...> según tu ruta -->
+            </div>
+
+            <h2 class="sidebar-title">Contacto</h2>
+            <ul class="sidebar-list">
+                <li><strong>Email:</strong><br> ruben.montu56@gmail.com</li>
+                <li><strong>Teléfono:</strong><br> +52 55 3927 1893</li>
+                <li><strong>Ciudad:</strong><br> Ciudad de México</li>
+            </ul>
+
+            <h2 class="sidebar-title">Redes</h2>
+            <ul class="sidebar-list">
+                <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
+            </ul>
+
+            <h2 class="sidebar-title">Habilidades</h2>
+            <ul class="sidebar-list">
+                <li>Python / Flask</li>
+                <li>Flutter / Dart</li>
+                <li>Electrónica digital</li>
+                <li>Criptografía básica</li>
+                <li>Alemán B1/B2</li>
+            </ul>
+        </aside>
+
+        <!-- LADO DERECHO: CONTENIDO PRINCIPAL -->
+        <main class="content">
+            <header class="header">
+                <h1>Ruben Montufar Ramirez </h1>
+                <p class="subtitle">Estudiante de Ingeniería • Desarrollo de Software • Criptografía</p>
+            </header>
+
+            <section class="section">
+                <h2>Sobre mí</h2>
+                <p>
+                    Soy estudiante de ingeniería con interés en desarrollo de software,
+                    criptografía, electrónica y aprendizaje de idiomas. Me gusta trabajar
+                    en proyectos donde pueda combinar programación, matemáticas y creatividad.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>Formación Académica</h2>
+                <div class="item">
+                    <h3>Ingeniería en Computación / Sistemas</h3>
+                    <span class="item-meta">ESCOM - IPN · En curso</span>
+                    <p>Participación en proyectos de redes, criptografía, arquitectura de computadoras y desarrollo móvil.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Proyectos Destacados</h2>
+
+                <div class="item">
+                    <h3>“Vuelve Peludo” – Plataforma web de mascotas extraviadas</h3>
+                    <span class="item-meta">Frontend & Backend · Proyecto escolar</span>
+                    <p>
+                        Desarrollo de una aplicación web para reportar y localizar mascotas extraviadas
+                        en la CDMX, utilizando tecnologías web, base de datos y metodología Scrum.
+                    </p>
+                </div>
+
+                <div class="item">
+                    <h3>Prácticas de Criptografía</h3>
+                    <span class="item-meta">Python · AES · DES · Hill Cipher</span>
+                    <p>
+                        Implementación y análisis de algoritmos de cifrado clásico y moderno,
+                        comprendiendo conceptos de llave, bloques, modos de operación y seguridad.
+                    </p>
+                </div>
+            </section>
+            <section class="section">
+                <h2>Idiomas</h2>
+                <ul class="tags">
+                    <li>Español — Nativo</li>
+                    <li>Inglés — Intermedio / Avanzado</li>
+                    <li>Alemán — Nivel B1/B2</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Hobbies</h2>
+                <p>
+              Me encanta leer acerca de psicoanalisis y filosifa y tambien me gusta mucho tocar la guitarra como es la musica que lo envuelve,
+               ademas me gusta mucho ir al gimnasio, y me encanta escribir  y meditar.
+                </p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
