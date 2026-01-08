@@ -151,6 +151,33 @@ body {
 }
 
 /* ====== RESPONSIVE PARA PANTALLAS PEQUEÑAS ====== */
+/* ====== ESTILOS PARA BOTÓN DE DESCARGA ====== */
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: #4f9cf9;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-download:hover {
+    background: #3a7fd5;
+}
+
+.btn-download svg {
+    flex-shrink: 0;
+}
+
+/* ====== RESPONSIVE PARA PANTALLAS PEQUEÑAS ====== */
 @media (max-width: 768px) {
     .page {
         grid-template-columns: 1fr;
