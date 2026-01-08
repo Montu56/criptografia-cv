@@ -12,29 +12,35 @@ def index():
 
 @app.route("/descargar-llave")
 def descargar_llave():
-    # Crear el archivo public.key si no existe
-    public_key_path = os.path.join(app.root_path, 'static', 'public.key')
+    # Leer la llave pública real del archivo
+    public_key_path = os.path.join(app.root_path, 'public.pem')
     
-    # Contenido de la llave pública
-    public_key_content = """-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwK8vXMqR7xK0J3pY5xQb
-kzN8gFmH+TY3pQ9wK2xF5rN4mL8vP3qW2R9xK0J3pY5xQbkzN8gFmH+TY3pQ9wK2
-xF5rN4mL8vP3qW2R9xK0J3pY5xQbkzN8gFmH+TY3pQ9wK2xF5rN4mL8vP3qW2R9x
-K0J3pY5xQbkzN8gFmH+TY3pQ9wK2xF5rN4mL8vP3qW2R9xK0J3pY5xQbkzN8gFmH
-+TY3pQ9wK2xF5rN4mL8vP3qW2R9xK0J3pY5xQbkzN8gFmH+TY3pQ9wK2xF5rN4mL
-8vP3qW2R9xK0J3pY5xQbkzN8gFmH+TY3pQ9wK2xF5rN4mL8vP3qW2R9xK0J3pY5x
-QbkzN8gFmH+TY3pQ9wK2xF5rN4mL8vP3qW2R9xK0J3pY5xQbkzN8gFmH+TY3pQ9w
-K2xF5rN4mL8vP3qW2QIDAQABrmontufar1800
+    if not os.path.exists(public_key_path):
+        # Si no existe, usar contenido por defecto
+        public_key_content = """-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj14Fo19asmPiSCYiTRI6
+gaq4n9fD1IZdXx7xbrfJK4YF0yZU+Jx7+5cYOW6fCKWMlsIz1pNn2ZiexEyT7SS2
+mjKZkSkGVtxQh/zIDnki38JRVd+spFqgYdNCerU5Z86RTvdxxZhXNMblziy3FEli
+Y7ok6HdSKhR2NsyrtvY/q1HjY0QOvyIvgIBQAgciaPNQhs4e0jQhRCGThrYTd9W3
+R6v/M8bI8Fb+zj9UMxx4hbtTVfhwgkdIq9yklcywei6i/Ax6EcIfMUrTKJst9clJ
+wM1YC8mzM9HtrMtUX1Eizadqqz9vgjA7vY+GXfjxnmGytH4Q+w9SA4Y6EPT4giYr
+5QIDAQAB
 -----END PUBLIC KEY-----"""
+        with open(public_key_path, 'w') as f:
+            f.write(public_key_content)
+    else:
+        with open(public_key_path, 'r') as f:
+            public_key_content = f.read()
     
-    # Escribir el archivo
-    with open(public_key_path, 'w') as f:
+    # Crear archivo temporal para descarga
+    download_path = os.path.join(app.root_path, 'static', 'public.key')
+    with open(download_path, 'w') as f:
         f.write(public_key_content)
     
     return send_file(
-        public_key_path,
+        download_path,
         as_attachment=True,
-        download_name='public.key',
+        download_name='rmontufar_public.key',
         mimetype='application/x-pem-file'
     )
 
