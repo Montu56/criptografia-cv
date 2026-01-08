@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file, request, redirect, url_for, flash
+﻿from flask import Flask, render_template, send_file, request, redirect, url_for, flash
 import os
 from werkzeug.utils import secure_filename
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Forzar que Flask recargue las plantillas cuando cambian
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config['SECRET_KEY'] = 'tu_clave_secreta_aqui'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'tu_clave_secreta_aqui')
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max
 
@@ -20,7 +20,7 @@ def allowed_file(filename):
 
 @app.route("/")
 def index():
-    return render_template("index.html")  # usa templates/index.html
+    return render_template("index.html")
 
 @app.route("/subir-archivo", methods=['POST'])
 def subir_archivo():
@@ -49,8 +49,8 @@ def subir_archivo():
 
 @app.route("/descargar-llave")
 def descargar_llave():
-    # Ruta al archivo de llave pública de Ruben
-    public_key_path = r'c:\Users\rmontufarr1800\Desktop\RSA\publicRuben.key'
+    # Ruta al archivo de llave pública de Ruben (relativa al proyecto)
+    public_key_path = os.path.join(app.root_path, 'publicRuben.key')
     
     # Verificar si existe el archivo
     if os.path.exists(public_key_path):
@@ -65,4 +65,5 @@ def descargar_llave():
         return redirect(url_for('index'))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
